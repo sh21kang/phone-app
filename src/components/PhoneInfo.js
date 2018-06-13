@@ -1,6 +1,14 @@
 import React, {Component} from 'react'
 
-class PhoneInfo extends Component {
+export default class PhoneInfo extends Component {
+
+
+  handleRemove = ()=>{
+
+    const {info, onRemove} = this.props;
+    onRemove(info.id);
+  }
+
 
   render() {
     const style = {
@@ -17,6 +25,8 @@ class PhoneInfo extends Component {
         <div style={style}>
           <div><b>{name}</b></div>
           <div>{phone}</div>
+          <button onClick={this.handleRemove}>삭제</button>
+
         </div>
       );
   }

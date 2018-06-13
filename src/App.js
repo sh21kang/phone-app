@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import PhoneForm from './components/PhoneForm'
+import PhoneForm from './components/PhoneForm';
+import PhoneList from './components/PhoneList';
 import './App.css';
 
 class App extends Component {
@@ -25,14 +26,22 @@ class App extends Component {
       information: information.concat({id : this.id++, ...data})
     })
   }
-
+  handleRemove =(id) => {
+      const {information} = this.state;
+      this.setState({
+        information:information.filter(info => info.id !== id)
+      })
+    }
   render() {
     return (
       <div>
       <PhoneForm
         onCreate={this.handleCreate}
       />
-      {JSON.stringify(this.state.information)}
+      <PhoneList
+      data = {this.state.information}
+      onRemove = {this.handleRemove}
+      />
       </div>
     );
   }
